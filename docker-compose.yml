@@ -1,0 +1,22 @@
+services:
+  mariadb:
+    image: mariadb:11.5
+    container_name: php_tut-mariadb
+    restart: unless-stopped
+    ports:
+      - "3366:3306"
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: php_tut
+      MARIADB_USER: php_tut
+      MARIADB_PASSWORD: php_tut
+    volumes:
+      - php_tut_mariadb_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  php_tut_mariadb_data:
