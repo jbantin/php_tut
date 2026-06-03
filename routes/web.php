@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome', [
-        'users' => User::orderBy('name')->pluck('name'),
+        'users' => User::orderBy('name')->get(),
     ]);
 });
 
