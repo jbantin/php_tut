@@ -20,7 +20,7 @@
                         {{ $user->name }}
                     </p>
                     <p>
-                        {{ $user->email }} <a href="{{ route('users.delete.$user') }}">delete</a>
+                        {{ $user->email }} <a href="{{ route('users.delete', $user) }}">delete</a>
                     </p>
                 </div>
                 @empty
