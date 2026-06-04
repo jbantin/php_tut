@@ -1,22 +1,12 @@
 <?php
 
-use App\Models\User;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 
-Route::get('/', function () {
-    return view('welcome', [
-        'users' => User::orderBy('email')->get(),
-    ]);
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::controller(UserController::class)->prefix('users')->name('users.')->group(function () {
+    Route::get('/{user}', 'show')->name('show');
+    Route::post('/', 'store')->name('store');
+    Route::delete('/{user}', 'destroy')->name('destroy');
 });
-
-Route::get('/users/create', function () {
-    User::factory()->create();
-
-    return redirect('/');
-})->name('users.create');
-
-Route::get('/users/delete/{user}', function (User $user) {
-    $user->delete();
-
-    return redirect('/');
-})->name('users.delete');
