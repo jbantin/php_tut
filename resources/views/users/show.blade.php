@@ -11,7 +11,7 @@
         <!-- Styles / Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#4b4b48] flex p-6 lg:p-8 items-center lg:justify-center min-h-screen flex-col">
+    <body class="bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#4b4b48] dark:text-[#c5c5c1] flex p-6 lg:p-8 items-center lg:justify-center min-h-screen flex-col">
         <p>
             {{ $user->name }}
         </p>

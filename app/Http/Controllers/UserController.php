@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\UserActivityNotification;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
 
 class UserController extends Controller
@@ -15,7 +17,10 @@ class UserController extends Controller
 
     public function store(): RedirectResponse
     {
-        User::factory()->create();
+        $user = User::factory()->create();
+
+        Mail::to(config('mail.admin_address'))
+            ->send(new UserActivityNotification($user, 'created'));
 
         return redirect()->route('home');
     }
@@ -23,6 +28,9 @@ class UserController extends Controller
     public function destroy(User $user): RedirectResponse
     {
         $user->delete();
+
+        Mail::to(config('mail.admin_address'))
+            ->send(new UserActivityNotification($user, 'deleted'));
 
         return redirect()->route('home');
     }
