@@ -5,6 +5,10 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
 
+beforeEach(function () {
+    $this->actingAs(User::factory()->create());
+});
+
 it('returns only the matching user list partial for an ajax request', function () {
     $alice = User::factory()->create(['name' => 'Alice Anderson']);
     $bob = User::factory()->create(['name' => 'Bob Brown']);

@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Mail;
 
 uses(RefreshDatabase::class);
 
+beforeEach(function () {
+    $this->actingAs(User::factory()->create());
+});
+
 it('emails the admin when a user is created', function () {
     Mail::fake();
 
