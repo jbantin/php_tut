@@ -21,10 +21,11 @@
                     <p class="text-red-500 text-sm mb-4">{{ $message }}</p>
                 @enderror
                 <input type="password" name="password" id="password" placeholder="password" class="w-full mb-4 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" autocomplete="current-password" required>
-                <button  type="submit" class="inline-block bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors">
+                <button type="submit" class="inline-block bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors">
                     Login
                 </button>
             </form>
+            <p class="mt-4 text-sm">Don't have an account? <a href="{{ route('register') }}" class="text-blue-500 hover:underline">Register</a></p>
         </div>
     </body>
 </html>
